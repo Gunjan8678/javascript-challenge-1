@@ -115,20 +115,63 @@ function rpsFrontEnd(humanImageChoice, botImageChoice, finalMessage) {
 }
 
 // Challenge 4
-
 var all_buttons = document.getElementsByTagName("button");
-console.log(all_buttons);
-
-var copyAllButtons = [];
-for (var i = 0; i < all_buttons.length; i++) {
-  copyAllButtons.push(all_buttons[i]);
-}
-console.log(copyAllButtons);
-
-function buttonColorChange(buttonThing) {
-  if (buttonThing === "red") {
-    buttonsRed();
-  } else if (buttonThing === "") {
+for 
+console.log("copyAllButtons", copyAllButtons);
+function buttonColorChange(buttonId) {
+  if (buttonId.value === "red") {
+    allButtonsRed();
+  } else if (buttonId.value === "green") {
+    allButtonsGreen();
+  } else if (buttonId.value === "random") {
+    randomColorButton();
+  } else if (buttonId.value === "reset") {
+    resetAllButton();
   }
 }
-console.log(buttonThing.value);
+
+function allButtonsRed() {
+  for (let i = 0; i < all_buttons.length; i++) {
+    all_buttons[i].classList.remove(all_buttons[i].classList[1]);
+    all_buttons[i].classList.add("btn-danger");
+  }
+}
+
+function allButtonsGreen() {
+  for (let i = 0; i < all_buttons.length; i++) {
+    all_buttons[i].classList.remove(all_buttons[i].classList[1]);
+    all_buttons[i].classList.add("btn-success");
+  }
+}
+
+function randomColorButton() {
+  var colorArray = ["btn-primary", "btn-danger", "btn-warning", "btn-success"];
+
+  for (let i = 0; i < all_buttons.length; i++) {
+    var randomColor = Math.floor(Math.random() * 4);
+    console.log(colorArray[randomColor]);
+    all_buttons[i].classList.remove(all_buttons[i].classList[1]);
+    all_buttons[i].classList.add(colorArray[randomColor]);
+  }
+}
+// function copyButtons() {
+//   var all_buttons = document.querySelectorAll("button");
+//   console.log("allbutton", all_buttons);
+//   var copyAllButtons = [];
+//   for (let i = 0; i < all_buttons.length; i++) {
+//     copyAllButtons.push(all_buttons[i]);
+//   }
+
+//   return copyAllButtons;
+// }
+
+function resetAllButton() {
+  console.log("Copy in reset all buttons", copyAllButtons);
+  for (let i = 0; i < all_buttons.length; i++) {
+    // console.log(copyAllButtons[i].classList);
+    // console.log("okkkk", copyAllButtons[i].classList[1]);
+    all_buttons[i].classList.remove(all_buttons[i].classList[1]);
+    console.log("Copy in reset-all loop", copyAllButtons);
+    all_buttons[i].classList.add(copyAllButtons[i].classList[1]);
+  }
+}
